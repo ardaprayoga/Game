@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Night, Ifaa 🌙</title>
+<style>
+:root{--pink:#ffb8d0;--lav:#cbbdff;--ink:#fdf5ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at 50% 0%,#40306e 0%,#191a43 48%,#090e24 100%);overflow-x:hidden}
+#stars,.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.65;animation:twinkle 2.5s infinite alternate}
+@keyframes twinkle{to{opacity:.15;transform:scale(.6)}}
+.moon{position:fixed;right:9%;top:7%;width:72px;height:72px;border-radius:50%;background:#fff0c7;box-shadow:0 0 35px #fff0c755;z-index:0}
+.moon:after{content:"";position:absolute;left:20px;top:-7px;width:70px;height:70px;border-radius:50%;background:#252451}
+main{position:relative;z-index:1;width:min(760px,92%);margin:auto;padding:58px 0 42px;text-align:center}
+.eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:.76rem;color:#d9ccff}
+h1{font-family:Georgia,serif;font-size:clamp(2.5rem,9vw,4.7rem);line-height:1.05;margin:12px 0;color:#fff0f7;text-shadow:0 0 28px #ff9ec555}
+h1 span{color:var(--pink)}
+.subtitle{max-width:530px;margin:0 auto 26px;color:#dedaf8;line-height:1.7}
+.card{background:#ffffff10;border:1px solid #ffffff25;backdrop-filter:blur(12px);border-radius:24px;padding:24px;margin:18px 0;box-shadow:0 14px 45px #0002}
+h2{font-family:Georgia,serif;margin:0 0 12px;font-size:1.6rem}
+p{line-height:1.7}
+button{border:0;border-radius:999px;padding:12px 19px;margin:5px;background:linear-gradient(135deg,#ffb8d0,#cbbdff);color:#291b48;font-weight:750;font-size:.95rem;cursor:pointer;box-shadow:0 5px 18px #0002;transition:transform .18s}
+button:hover{transform:translateY(-2px)}
+button.secondary{background:#ffffff12;color:#fff;border:1px solid #ffffff35;box-shadow:none}
+#letterText{display:none;text-align:left;background:#fff7fb;color:#4d3458;padding:20px;border-radius:16px;margin-top:15px;white-space:pre-line}
+#gameArea{position:relative;height:210px;border-radius:18px;overflow:hidden;background:linear-gradient(#171a48,#292452);border:1px solid #ffffff20;margin:16px 0}
+#gameArea:before{content:"✦  ·     ✧       ·   ✦     ·     ✧";position:absolute;top:20px;left:0;right:0;color:#fff8;letter-spacing:12px}
+#catchStar{position:absolute;font-size:30px;cursor:pointer;user-select:none;filter:drop-shadow(0 0 10px #ffe9a8);left:45%;top:45%;transition:left .15s,top .15s}
+.score{color:#ffe6a5;font-weight:800}
+.final{font-family:Georgia,serif;font-size:1.35rem;color:#ffe5f0}
+footer{font-size:.8rem;color:#c8c2e8;margin-top:28px}
+.floating{position:fixed;bottom:-30px;font-size:18px;animation:floatup 7s linear forwards;opacity:.7}
+@keyframes floatup{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(max-width:520px){main{padding-top:80px}.card{padding:18px}.moon{width:52px;height:52px;right:7%;top:3%}.moon:after{width:51px;height:51px;left:16px;top:-5px}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="moon" aria-hidden="true"></div><div class="hearts" id="hearts"></div>
+<main>
+  <div class="eyebrow">sebuah hadiah kecil, khusus untukmu</div>
+  <h1>Good Night,<br><span>Ifaa</span> ♡</h1>
+  <p class="subtitle">Kalau hari ini terasa panjang, istirahatlah sebentar di sini. Ada sedikit keajaiban malam, surat kecil, dan seseorang yang berharap kamu tidur dengan senyum.</p>
+  <section class="card">
+    <h2>💌 Surat kecil untuk Ifaa</h2>
+    <p>Ada pesan yang ingin disampaikan sebelum kamu terlelap.</p>
+    <button id="openLetter">Buka suratnya ✨</button>
+    <div id="letterText">Hai, Ifaa sayang 🤍
+
+Terima kasih sudah hadir dan membuat hari-hari terasa lebih berarti. Kalau hari ini melelahkan, kamu nggak harus kuat setiap saat, ya. Kamu boleh istirahat, tarik napas pelan-pelan, dan lepaskan hal-hal yang bikin pikiranmu ramai.
+
+Andai aku bisa, aku ingin memastikan kamu merasa aman, disayangi, dan nggak sendirian. Semoga malam ini mimpi-mimpimu indah, hatimu tenang, dan besok kamu bangun dengan senyum yang paling manis.
+
+Jangan lupa minum air, rapikan selimut, lalu pejamkan mata.
+Selamat tidur, Ifaa. Kamu berharga, lebih dari yang bisa dijelaskan kata-kata. 🌙
+
+— seseorang yang sayang kamu ♡</div>
+  </section>
+  <section class="card">
+    <h2>⭐ Kumpulkan bintang untuk Ifaa</h2>
+    <p>Sentuh bintang yang muncul sebanyak yang kamu bisa. Kumpulkan 5 bintang untuk membuka ucapan rahasia!</p>
+    <div class="score">Bintang: <span id="score">0</span> / 5</div>
+    <div id="gameArea" aria-label="Area permainan menangkap bintang"><span id="catchStar" role="button" aria-label="Tangkap bintang">⭐</span></div>
+    <button id="startGame">Mulai bermain</button>
+    <p id="gameMessage" aria-live="polite">Bintang-bintangnya sedang menunggu kamu, Ifaa.</p>
+  </section>
+  <section class="card">
+    <h2>🌙 Ritual sebelum tidur</h2>
+    <p>Pilih tombol di bawah untuk menerima pengingat kecil yang hangat.</p>
+    <button class="secondary" data-msg="Tarik napas pelan selama 4 hitungan, tahan sebentar, lalu hembuskan perlahan. Kamu sudah berusaha sebaik mungkin hari ini. 🤍">Tenangkan pikiran</button>
+    <button class="secondary" data-msg="Minum sedikit air, redupkan layar, lalu cari posisi paling nyaman. Semoga tidurmu nyenyak, Ifaa. 💗">Siap-siap tidur</button>
+    <button class="secondary" id="sleepButton">Peluk virtual 🫂</button>
+    <p id="ritualMessage" aria-live="polite"></p>
+  </section>
+  <section class="card" id="secret" style="display:none">
+    <h2>🎁 Pesan rahasia terbuka!</h2>
+    <p class="final">Kalau bintang di langit bisa dihitung, mungkin masih kalah banyak dari alasan untuk menyayangimu, Ifaa. Selamat tidur, bintang kecilku. Semoga kita bertemu di mimpi yang indah. ♡</p>
+    <p>✨ ⭐ 🌙 ⭐ ✨</p>
+  </section>
+  <button id="musicButton" class="secondary">♫ Musik malam: mulai</button>
+  <p style="font-size:.78rem;color:#c8c2e8">Musik menggunakan nada lembut buatan browser. Aktifkan jika kamu ingin ditemani suara.</p>
+  <footer>Dibuat dengan sepenuh hati, khusus untuk Ifaa ♡</footer>
+</main>
+<script>
+const starField=document.getElementById('stars');
+for(let i=0;i<85;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.opacity=(.2+Math.random()*.7);starField.appendChild(s)}
+function floatHeart(){let h=document.createElement('span');h.className='floating';h.textContent=['♡','♥','✧','💗'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'%';h.style.color=['#ffb8d0','#d9ccff','#fff0c7'][Math.floor(Math.random()*3)];document.getElementById('hearts').appendChild(h);setTimeout(()=>h.remove(),7200)}
+setInterval(floatHeart,1800);
+document.getElementById('openLetter').addEventListener('click',()=>{const t=document.getElementById('letterText');t.style.display=t.style.display==='block'?'none':'block';document.getElementById('openLetter').textContent=t.style.display==='block'?'Tutup surat 💌':'Buka suratnya ✨'});
+document.querySelectorAll('[data-msg]').forEach(b=>b.addEventListener('click',()=>document.getElementById('ritualMessage').textContent=b.dataset.msg));
+document.getElementById('sleepButton').addEventListener('click',()=>{document.getElementById('ritualMessage').textContent='Peluk virtual paling hangat buat Ifaa 🫂🤍 Bayangkan kamu sedang dipeluk dengan lembut. Kamu aman, kamu disayangi, sekarang waktunya beristirahat.';for(let i=0;i<7;i++)setTimeout(floatHeart,i*150)});
+let score=0,playing=false;
+const gameArea=document.getElementById('gameArea'),catchStar=document.getElementById('catchStar');
+function moveStar(){const maxX=gameArea.clientWidth-42,maxY=gameArea.clientHeight-42;catchStar.style.left=Math.max(5,Math.random()*maxX)+'px';catchStar.style.top=Math.max(35,Math.random()*(maxY-25)+10)+'px'}
+document.getElementById('startGame').addEventListener('click',()=>{score=0;playing=true;document.getElementById('score').textContent=score;document.getElementById('secret').style.display='none';document.getElementById('gameMessage').textContent='Ayo, tangkap bintangnya!';document.getElementById('startGame').textContent='Mulai ulang';moveStar()});
+catchStar.addEventListener('click',()=>{if(!playing)return;score++;document.getElementById('score').textContent=score;if(score>=5){playing=false;document.getElementById('gameMessage').textContent='Kamu berhasil! Pesan rahasianya terbuka, Ifaa. 💖';document.getElementById('secret').style.display='block';document.getElementById('secret').scrollIntoView({behavior:'smooth',block:'center'});for(let i=0;i<12;i++)setTimeout(floatHeart,i*100)}else{document.getElementById('gameMessage').textContent=['Wah, satu bintang untuk senyummu!','Cantik sekali bintangnya, ya?','Sedikit lagi, Ifaa!'][Math.floor(Math.random()*3)];moveStar()}});
+window.addEventListener('resize',()=>{if(playing)moveStar()});
+// Gentle synthesized tones; no external audio or download required.
+let audioCtx=null,musicTimer=null,musicOn=false,noteIndex=0;
+const notes=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46];
+function playNote(){if(!audioCtx||!musicOn)return;const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=notes[noteIndex++%notes.length];gain.gain.setValueAtTime(.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.035,audioCtx.currentTime+.08);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.65);osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+.7)}
+document.getElementById('musicButton').addEventListener('click',async()=>{if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)()}if(audioCtx.state==='suspended')await audioCtx.resume();musicOn=!musicOn;document.getElementById('musicButton').textContent=musicOn?'♫ Musik malam: hentikan':'♫ Musik malam: mulai';if(musicOn){playNote();musicTimer=setInterval(playNote,720)}else{clearInterval(musicTimer)}});
+</script>
+</body>
+</html>
